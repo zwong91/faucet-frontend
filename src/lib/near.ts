@@ -9,9 +9,9 @@ let nearAccount: Account;
 const connectToNearAccount = async () => {
   if (nearAccount) return;
 
-  const { NEAR_CALLER_ID, NEAR_CALLER_PRIK } = process.env;
+  const { NEAR_CALLER_ID, NEAR_CALLER_SK } = process.env;
 
-  const keyPair = KeyPair.fromString(NEAR_CALLER_PRIK);
+  const keyPair = KeyPair.fromString(NEAR_CALLER_SK);
   const keyStore = new InMemoryKeyStore();
   await keyStore.setKey('testnet', NEAR_CALLER_ID, keyPair);
 
