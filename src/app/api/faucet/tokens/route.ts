@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { RequestTokensApiRequest } from './models';
-import { TypedError } from 'near-api-js/lib/utils/errors';
-import { ExecutionOutcomeWithId } from 'near-api-js/lib/providers/provider';
+import { TypedError } from 'web3-api-js/lib/utils/errors';
+import { ExecutionOutcomeWithId } from 'web3-api-js/lib/providers/provider';
 import { connectToFaucet } from '@/lib/near';
 
 export async function GET() {

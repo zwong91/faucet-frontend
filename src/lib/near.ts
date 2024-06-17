@@ -1,8 +1,8 @@
 import { FaucetContract } from '@/app/api/faucet/tokens/models';
 import { EXEC_GAS } from '@/consts';
-import { Account, InMemorySigner, KeyPair } from 'near-api-js';
-import { InMemoryKeyStore } from 'near-api-js/lib/key_stores';
-import { JsonRpcProvider } from 'near-api-js/lib/providers';
+import { Account, InMemorySigner, KeyPair } from 'web3-api-js';
+import { InMemoryKeyStore } from 'web3-api-js/lib/key_stores';
+import { JsonRpcProvider } from 'web3-api-js/lib/providers';
 
 let nearAccount: Account;
 

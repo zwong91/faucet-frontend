@@ -1,4 +1,4 @@
-import { FinalExecutionOutcome } from 'near-api-js/lib/providers';
+import { FinalExecutionOutcome } from 'web3-api-js/lib/providers';
 import { NextRequest } from 'next/server';
 
 export interface ITokenDTO {
