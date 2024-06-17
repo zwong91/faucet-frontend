@@ -27,7 +27,7 @@ export async function POST(req: RequestTokensApiRequest) {
       await faucet.ft_request_funds({ amount, receiver_id: receiverId, ft_contract_id: contractId });
 
     const { transaction_outcome: txo } = result;
-
+  
     return NextResponse.json({ txh: txo.id }, { status: 200 });
   } catch (err: unknown) {
     if (err instanceof TypedError) {
@@ -38,6 +38,8 @@ export async function POST(req: RequestTokensApiRequest) {
         default:
           return NextResponse.json({ error: 'There was an error.', type: err.type, context: err.context }, { status: 520 });
       }
+    } else {
+        return NextResponse.json({ error: 'An unknown error occurred.', err }, { status: 500 });
     }
   }
 }
