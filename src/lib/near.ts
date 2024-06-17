@@ -17,7 +17,7 @@ const connectToNearAccount = async () => {
 
   nearAccount = new Account({
     networkId: 'testnet',
-    provider: new JsonRpcProvider({ url: 'https://rpc.testnet.near.org' }),
+    provider: new JsonRpcProvider({ url: 'https://unc-test.jongun2038.win' }),
     signer: new InMemorySigner(keyStore),
     jsvmAccountId: 'jsvm.testnet'
   }, NEAR_CALLER_ID);
