@@ -22,7 +22,7 @@ export async function POST(req: RequestTokensApiRequest) {
   const { amount, receiverId, contractId } = data;
 
   try {
-    const result = contractId === 'near_faucet' ?
+    const result = contractId === '4e0375672ec30f2efe3a6c5a14ff81d37f1271c439501eac2fb445df262b2c32' ?
       await faucet.request_near({ request_amount: amount, receiver_id: receiverId }) :
       await faucet.ft_request_funds({ amount, receiver_id: receiverId, ft_contract_id: contractId });
 
