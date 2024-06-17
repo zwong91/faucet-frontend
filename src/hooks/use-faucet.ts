@@ -1,12 +1,12 @@
 import { toFundsReq, toUiTokens } from '../utils/transformers';
 import { useEffect, useState } from 'react';
 import { IReqForm, IRequestFundsDetailsDTO, IToken } from '../models/faucet-models';
-import { NEAR_TOKEN } from '@/consts';
+import { UNC_TOKEN } from '@/consts';
 
 
 export const useFaucet = () => {
   const [tokens, setTokens] = useState<IToken[]>([]);
-  const [selectedToken, setToken] = useState<IToken>(NEAR_TOKEN);
+  const [selectedToken, setToken] = useState<IToken>(UNC_TOKEN);
 
   useEffect(() => {
     const getTokens = async () => {
@@ -20,7 +20,7 @@ export const useFaucet = () => {
 
         const json = await res.json();
         const uiTokens = toUiTokens(json.tokens);
-        setTokens([NEAR_TOKEN, ...uiTokens]);
+        setTokens([UNC_TOKEN, ...uiTokens]);
       } catch (error) {
         // Do something with the error
       }
@@ -48,7 +48,7 @@ export const useFaucet = () => {
   };
 
   const setSelectedToken = (token: IToken) => setToken(token);
-  const resetSelectedToken = () => setToken(NEAR_TOKEN);
+  const resetSelectedToken = () => setToken(UNC_TOKEN);
 
   return {
     tokens,
