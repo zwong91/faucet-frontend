@@ -71,7 +71,7 @@ export const RequestForm = () => {
         <form className='animate-fade-in' onSubmit={handleSubmit(onSubmit)}>
           <div className='pr-10 hidden md:block'>
             <h2 className='font-semibold text-3xl mb-2'>Get testnet tokens</h2>
-            <p className="text-md mb-12">Use this faucet to request testnet NEAR or provided Fungible Tokens</p>
+            <p className="text-md mb-12">Use this faucet to request testnet Utility or provided Fungible Tokens</p>
           </div>
           <fieldset className='mb-4'>
             {/* Token input */}
