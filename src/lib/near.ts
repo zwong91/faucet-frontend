@@ -1,6 +1,6 @@
 import { FaucetContract } from '@/app/api/faucet/tokens/models';
 import { EXEC_GAS } from '@/consts';
-import { Account, InMemorySigner, KeyPair } from 'web3-api-js';
+import { Connection, Account, InMemorySigner, KeyPair } from 'web3-api-js';
 import { InMemoryKeyStore } from 'web3-api-js/lib/key_stores';
 import { JsonRpcProvider } from 'web3-api-js/lib/providers';
 
@@ -15,12 +15,14 @@ const connectToNearAccount = async () => {
   const keyStore = new InMemoryKeyStore();
   await keyStore.setKey('testnet', NEAR_CALLER_ID, keyPair);
 
-  nearAccount = new Account({
+  const config = {
     networkId: 'testnet',
     provider: new JsonRpcProvider({ url: 'https://unc-test.jongun2038.win' }),
     signer: new InMemorySigner(keyStore),
     jsvmAccountId: 'jsvm.testnet'
-  }, NEAR_CALLER_ID);
+  };
+
+  nearAccount = new Account(Connection.fromConfig(config), NEAR_CALLER_ID);
 };
 
 export const connectToFaucet = async (): Promise<FaucetContract> => {
@@ -28,7 +30,7 @@ export const connectToFaucet = async (): Promise<FaucetContract> => {
 
   return {
     'ft_list_tokens': async () => await nearAccount.viewFunction({ contractId: process.env.NEAR_FAUCET_ID, methodName: 'ft_list_tokens' }),
-    'request_near': async (args: { request_amount: string, receiver_id: string; }) => await nearAccount.functionCall({ contractId: process.env.NEAR_FAUCET_ID, methodName: 'request_near', args, gas: EXEC_GAS }),
-    'ft_request_funds': async (args: { amount: string, receiver_id: string, ft_contract_id: string; }) => await nearAccount.functionCall({ contractId: process.env.NEAR_FAUCET_ID, methodName: 'ft_request_funds', args, gas: EXEC_GAS })
+    'request_near': async (args: { request_amount: string, receiver_id: string; }) => await nearAccount.functionCall({ contractId: process.env.NEAR_FAUCET_ID, methodName: 'request_near', args, gas: BigInt(EXEC_GAS) }),
+    'ft_request_funds': async (args: { amount: string, receiver_id: string, ft_contract_id: string; }) => await nearAccount.functionCall({ contractId: process.env.NEAR_FAUCET_ID, methodName: 'ft_request_funds', args, gas: BigInt(EXEC_GAS) })
   };
 };
