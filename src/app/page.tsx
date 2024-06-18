@@ -1,5 +1,5 @@
 import { RequestForm } from '@/components/request-form';
-import { NearLogo } from '@/components/near-logo';
+import { NearLogo } from '@/components/unc-logo';
 
 export default function Home() {
   // TODO: Figure whether the layout is not more appropriate for the layout.tsx (oops...)
